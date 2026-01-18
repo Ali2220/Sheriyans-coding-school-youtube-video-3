@@ -1,4 +1,4 @@
-/* scope hai ke app apne created variables and functions ko kaha tak use kr sakte ho */
+/* scope hai, ke app apne created variables and functions ko kaha tak use kr sakte ho */
 
 /* TYPES:
  1. functional scope
@@ -82,24 +82,46 @@
 //     }
 // }
 
-/* Example: 3 - Har outer function call apni closure memory banata hai, jo independent hoti hai.*/
+/* Example: 3 - Har outer function-call apni closure memory banata hai, jo independent hoti hai.*/
 
-function outer() {
-  let count = 0;
+// function outer() {
+//   let count = 0;
+
+//   return function () {
+//     count++;
+//     console.log(count);
+//   };
+// }
+
+// let fnc = outer();
+// fnc();
+// fnc();
+// fnc();
+// fnc();
+
+// let fnc2 = outer();
+// fnc2();
+// fnc2();
+// fnc2();
+
+/* ENCAPSULATION */
+function clickLimiter() {
+  let click = 0;
 
   return function () {
-    count++;
-    console.log(count);
+    if (click < 5) {
+      click++;
+      console.log(`Clicked ${click} times`);
+    } else {
+      console.error("Limit Exceeded, try after sometime");
+    }
   };
 }
 
-let fnc = outer();
-fnc();
-fnc();
-fnc();
-fnc();
-
-let fnc2 = outer();
-fnc2();
-fnc2();
-fnc2();
+let fnc = clickLimiter()
+fnc()
+fnc()
+fnc()
+fnc()
+fnc()
+fnc()
